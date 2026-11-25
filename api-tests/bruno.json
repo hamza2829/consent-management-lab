@@ -1,0 +1,9 @@
+{
+  "version": "1",
+  "name": "Consent Management API",
+  "type": "collection",
+  "ignore": [
+    "node_modules",
+    ".git"
+  ]
+}

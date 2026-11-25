@@ -1,0 +1,21 @@
+spring:
+  application:
+    name: consent-management-api
+  datasource:
+    url: ${DATABASE_URL:jdbc:postgresql://localhost:5432/consent}
+    username: ${DATABASE_USER:consent}
+    password: ${DATABASE_PASSWORD:consent}
+  jpa:
+    hibernate:
+      ddl-auto: validate
+    open-in-view: false
+  flyway:
+    enabled: true
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info,prometheus,metrics
+springdoc:
+  swagger-ui:
+    path: /swagger-ui.html

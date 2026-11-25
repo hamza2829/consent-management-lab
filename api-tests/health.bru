@@ -1,0 +1,13 @@
+meta {
+  name: health
+  type: http
+  seq: 1
+}
+get {
+  url: {{baseUrl}}/actuator/health
+  body: none
+  auth: none
+}
+assert {
+  res.status: 200
+}
