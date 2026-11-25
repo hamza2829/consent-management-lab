@@ -1,0 +1,20 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata: {name: consent-portal, namespace: consent-lab}
+spec:
+  replicas: 1
+  selector: {matchLabels: {app: consent-portal}}
+  template:
+    metadata: {labels: {app: consent-portal}}
+    spec:
+      containers:
+        - name: portal
+          image: consent-portal:ci
+          ports: [{containerPort: 80}]
+---
+apiVersion: v1
+kind: Service
+metadata: {name: consent-portal, namespace: consent-lab}
+spec:
+  selector: {app: consent-portal}
+  ports: [{port: 80, targetPort: 80}]

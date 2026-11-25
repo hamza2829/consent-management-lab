@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata: {name: consent-api, namespace: consent-lab}
+spec:
+  replicas: 1
+  selector: {matchLabels: {app: consent-api}}
+  template:
+    metadata: {labels: {app: consent-api}}
+    spec:
+      containers:
+        - name: api
+          image: consent-api:ci
+          ports: [{containerPort: 8080}]
+          env:
+            - {name: DATABASE_URL, value: jdbc:postgresql://postgres:5432/consent}
+            - {name: DATABASE_USER, value: consent}
+            - {name: DATABASE_PASSWORD, value: consent}
+---
+apiVersion: v1
+kind: Service
+metadata: {name: consent-api, namespace: consent-lab}
+spec:
+  selector: {app: consent-api}
+  ports: [{port: 8080, targetPort: 8080}]
